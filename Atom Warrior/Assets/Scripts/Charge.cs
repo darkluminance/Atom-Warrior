@@ -23,10 +23,14 @@ public class Charge : MonoBehaviour {
 
 		if(charge == 0){
 			chargeText.text = "";
+		}else if (charge == 1){
+			chargeText.text = "+";
+		}else if (charge == -1){
+			chargeText.text = "-";
 		}else if (charge > 0){
-			chargeText.text = "+" + charge;
+			chargeText.text = "" + charge + "+";
 		}else if (charge < 0){
-			chargeText.text = "" + charge;
+			chargeText.text = "" + -charge + "-" ;
 		}
 
 		

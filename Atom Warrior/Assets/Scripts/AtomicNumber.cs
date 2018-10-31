@@ -38,7 +38,7 @@ public class AtomicNumber : MonoBehaviour {
 		Element_Name.Add("N");			bgColor[7] = new Color (0.4811f,0.4811f, 0.4811f);
 		Element_Name.Add("O");			bgColor[8] = new Color (0.25f,0.35f, 0.4f);
 		Element_Name.Add("F");			bgColor[9] = new Color (0.35f,0.35f, 0.2f);
-		Element_Name.Add("Ne");
+		Element_Name.Add("Ne");			bgColor[10] = new Color (.6f,.45f,.2f);
 		Element_Name.Add("Na");
 		Element_Name.Add("Mg");
 		Element_Name.Add("Al");
@@ -66,8 +66,8 @@ public class AtomicNumber : MonoBehaviour {
 			gameOverYOOOO.text = "GAME OVER";
 			element.text = "";
 			Z.text =""; M.text = ""; charge.text = "";
-			Destroy(atom); Destroy(spawner);
 			
+			atom.SetActive(false); Destroy(spawner);
 			Time.timeScale = 0;
 		}
 

@@ -52,7 +52,7 @@ public class PlayerShootParticles : MonoBehaviour {
 			bullet.GetComponent<Rigidbody>().velocity=(touchPos - 
 			new Vector3 (transform.position.x, transform.position.y, 0)).normalized*shotSpeed;
 
-							
+			StartCoroutine(Destroyafteramoment(bullet));				
 			
 		}
 
@@ -70,9 +70,15 @@ public class PlayerShootParticles : MonoBehaviour {
 			bullet.GetComponent<Rigidbody>().velocity=(touchPos - 
 			new Vector3 (transform.position.x, transform.position.y, 0)).normalized*shotSpeed;
 
+			StartCoroutine(Destroyafteramoment(bullet));
 							
 			
 		}
 		
+	}
+
+	IEnumerator Destroyafteramoment(GameObject bullet){
+		yield return new WaitForSeconds(3);
+		Destroy(bullet);
 	}
 }
