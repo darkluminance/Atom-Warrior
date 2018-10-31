@@ -7,6 +7,8 @@ public class ShowTime : MonoBehaviour {
 
 	public Text time;
 
+	public GameOver KO;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -14,6 +16,10 @@ public class ShowTime : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		time.text = ("" +  Time.time);
+		if(KO.GetComponent<GameOver>().gameOver == false){			
+			time.text = ("" +  Time.time);
+		}
+
+		Debug.ClearDeveloperConsole();
 	}
 }

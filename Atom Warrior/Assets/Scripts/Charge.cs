@@ -9,6 +9,8 @@ public class Charge : MonoBehaviour {
 
 	public AtomicNumber Z;
 
+	public GameOver KO;
+
 	public Text chargeText;
 
 	// Use this for initialization
@@ -21,6 +23,12 @@ public class Charge : MonoBehaviour {
 	void Update () {
 		charge = - electronNo + Z.AtomicNo;
 
+		if(electronNo < 0 || Mathf.Abs(charge)>6){
+			
+			KO.GetComponent<GameOver>().enabled = true;
+			KO.GetComponent<GameOver>().gameOver = true;
+		}
+
 		if(charge == 0){
 			chargeText.text = "";
 		}else if (charge == 1){
@@ -31,6 +39,10 @@ public class Charge : MonoBehaviour {
 			chargeText.text = "" + charge + "+";
 		}else if (charge < 0){
 			chargeText.text = "" + -charge + "-" ;
+		}
+
+		if(KO.GetComponent<GameOver>().gameOver){
+			chargeText.text = "";
 		}
 
 		

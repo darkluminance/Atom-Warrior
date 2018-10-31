@@ -66,5 +66,11 @@ public class Repel : MonoBehaviour {
 			Destroy(other.gameObject);
 			Destroy(gameObject);
 		}
+
+		if(other.tag == "Electron" && gameObject.tag == "Neutron"){
+			//beta decay and destroy
+			Destroy(other.gameObject);
+			Destroy(gameObject);
+		}
 	}
 }

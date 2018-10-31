@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class PlayerShootParticles : MonoBehaviour {
 
-	public GameObject particleElectron, particleProton, arrow, referencePoint, spawnPoint;
+	public GameObject particleElectron, particleProton, particleNeutron,
+	arrow, referencePoint, spawnPoint;
 
 	public float shotSpeed;
 
 	public Charge E;
 
-	public AtomicNumber Z;
+	public AtomicNumber Z; public MassNumber M;
+
+	public GameOver KO;
 
 	// Use this for initialization
 	void Start () {
 		
 		 E = GameObject.FindWithTag("E").GetComponent<Charge>();		 
 		 Z = GameObject.FindWithTag("Z").GetComponent<AtomicNumber>();
+		 M = GameObject.FindWithTag("M").GetComponent<MassNumber>();
 	}
 	
 	// Update is called once per frame
@@ -70,15 +74,38 @@ public class PlayerShootParticles : MonoBehaviour {
 			bullet.GetComponent<Rigidbody>().velocity=(touchPos - 
 			new Vector3 (transform.position.x, transform.position.y, 0)).normalized*shotSpeed;
 
+			if (Z.AtomicNo == 0){
+			KO.GetComponent<GameOver>().enabled = true;
+			KO.GetComponent<GameOver>().gameOver = true;
+		}
+
 			StartCoroutine(Destroyafteramoment(bullet));
 							
+			
+		}
+
+		if(Input.GetMouseButtonDown(2) || Input.GetKeyDown(KeyCode.Space)){
+			//Instantiate bullet and set the velocity of the bullet
+			GameObject bullet = Instantiate(particleNeutron, transform.position, Quaternion.identity) as GameObject;
+			
+
+			Vector3 velocity = (Input.mousePosition - transform.position).normalized;
+
+			bullet.GetComponent<MoveTowardsAtom>().enabled = false;	
+
+			M.NeutronNo--;
+			
+			bullet.GetComponent<Rigidbody>().velocity=(touchPos - 
+			new Vector3 (transform.position.x, transform.position.y, 0)).normalized*shotSpeed;
+
+			StartCoroutine(Destroyafteramoment(bullet));				
 			
 		}
 		
 	}
 
 	IEnumerator Destroyafteramoment(GameObject bullet){
-		yield return new WaitForSeconds(3);
+		yield return new WaitForSeconds(2);
 		Destroy(bullet);
 	}
 }

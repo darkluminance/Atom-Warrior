@@ -5,11 +5,11 @@ using UnityEngine.UI;
 
 public class AtomicNumber : MonoBehaviour {
 
+	public GameOver KO;
+
 	public int AtomicNo;
 
-	public GameObject atom, spawner;
-
-	public Text Z, element, gameOverYOOOO, M, charge;
+	public Text Z, element;
 
 	List<string> Element_Name = new List <string>();
 
@@ -53,23 +53,24 @@ public class AtomicNumber : MonoBehaviour {
 		Element_Name.Add("Ti");
 		Element_Name.Add("V");
 		
+		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		element.text ="" + Element_Name[AtomicNo];
-		Z.text = "" + AtomicNo;
+		if(AtomicNo > 0){
+			element.text ="" + Element_Name[AtomicNo];
+			Z.text = "" + AtomicNo;
+		}
+		if(KO.GetComponent<GameOver>().gameOver == true){
+			element.text ="";
+			Z.text = "" ;
+		}
+		
 
 		RenderSettings.skybox.SetColor("_Tint", bgColor[AtomicNo]);
 
-		if (AtomicNo == 0){
-			gameOverYOOOO.text = "GAME OVER";
-			element.text = "";
-			Z.text =""; M.text = ""; charge.text = "";
-			
-			atom.SetActive(false); Destroy(spawner);
-			Time.timeScale = 0;
-		}
+		
 
 	}
 }
