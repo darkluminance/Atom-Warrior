@@ -8,6 +8,8 @@ public class Repel : MonoBehaviour {
 
 	public GameObject neutron;
 
+	public GameObject protonExplosion, neutronExplosion, electronExplosion;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -33,6 +35,7 @@ public class Repel : MonoBehaviour {
 
 			GetComponent<Rigidbody>().AddForce(-force * repelForce);
 			yield return new WaitForSeconds(3);
+			Instantiate(electronExplosion, transform.position, Quaternion.identity);
 			Destroy(other.gameObject);
 			Destroy(gameObject);
 		}
@@ -42,6 +45,9 @@ public class Repel : MonoBehaviour {
 
 			if(i == 1){
 				//Disintegrate proton and beta decay
+				
+				Instantiate(protonExplosion, transform.position, Quaternion.identity);				
+				Instantiate(electronExplosion, transform.position, Quaternion.identity);
 				Destroy(other.gameObject);
 			}else if(i == 2){
 				//Bounce of
@@ -50,6 +56,8 @@ public class Repel : MonoBehaviour {
 				GetComponent<Rigidbody>().AddForce(-force * repelForce * 10);
 
 				yield return new WaitForSeconds(3);
+				Instantiate(protonExplosion, transform.position, Quaternion.identity);				
+				Instantiate(electronExplosion, transform.position, Quaternion.identity);
 				Destroy(other.gameObject);
 				Destroy(gameObject);
 
@@ -63,12 +71,18 @@ public class Repel : MonoBehaviour {
 
 		if(other.tag == "Proton" && gameObject.tag == "Neutron"){
 			//beta decay and destroy
+			
+				Instantiate(protonExplosion, transform.position, Quaternion.identity);				
+				Instantiate(neutronExplosion, transform.position, Quaternion.identity);
 			Destroy(other.gameObject);
 			Destroy(gameObject);
 		}
 
 		if(other.tag == "Electron" && gameObject.tag == "Neutron"){
 			//beta decay and destroy
+			
+				Instantiate(neutronExplosion, transform.position, Quaternion.identity);				
+				Instantiate(electronExplosion, transform.position, Quaternion.identity);
 			Destroy(other.gameObject);
 			Destroy(gameObject);
 		}

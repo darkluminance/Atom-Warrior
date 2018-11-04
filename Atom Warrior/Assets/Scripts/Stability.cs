@@ -11,7 +11,14 @@ public class Stability : MonoBehaviour {
 
 	public MassNumber M;
 
-	public bool stable, unstable, closetounstable;
+	public bool stable, unstable, closetounstable, dead;
+
+	public int AtomicNumber, NeutronNumber, ElectronNumber;
+
+	public  Text stabilityState, protonStats, neutronStats, electronStats, showRatio, maxRatio;
+
+	public GameObject player;
+
 
 
 	// Use this for initialization
@@ -20,49 +27,78 @@ public class Stability : MonoBehaviour {
 		 M = GameObject.FindWithTag("M").GetComponent<MassNumber>();
 		 E = GameObject.FindWithTag("E").GetComponent<Charge>();
 		 KO = GameObject.FindWithTag("Finish").GetComponent<GameOver>();
+		 player = GameObject.FindWithTag("Player");
 
-		 stable = true; unstable = false; closetounstable = false;
+		 stable = true; unstable = false; closetounstable = false;  dead = false;
+
+		 stabilityState.text= "";
 		
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Z.AtomicNo <= 20){
-			if((M.NeutronNo / Z.AtomicNo) >= 1.25f){
-				if((M.NeutronNo / Z.AtomicNo) >= 1.25f  && (M.NeutronNo / Z.AtomicNo) <= 1.3f){
-					unstable = true; stable = false; closetounstable = false;
-				}else{
-					KO.GetComponent<GameOver>().enabled = true;
-					KO.GetComponent<GameOver>().gameOver = true;
-				}			
-				
-			}else if ((M.NeutronNo / Z.AtomicNo) <= 1.25f && (M.NeutronNo / Z.AtomicNo) >= 1.00f){
-				if((M.NeutronNo / Z.AtomicNo) < 1.25f){
-					unstable = false; stable = false; closetounstable = true;
-				}else if ((M.NeutronNo / Z.AtomicNo) == 1.00f){
-					stable = true; unstable = false; closetounstable = false;
-				}
+
+		AtomicNumber = Z.AtomicNo;	NeutronNumber = M.NeutronNo;	ElectronNumber = E.electronNo;
+
+			if(AtomicNumber > 0 && AtomicNumber<=20){
+				Checkstability(1.25f);
+			}else if (AtomicNumber>20 && AtomicNumber<=40){
+				Checkstability(1.4f);
+			}else if (AtomicNumber>40 && AtomicNumber<=50){
+				Checkstability(1.5f);
+			}else if (AtomicNumber>50 && AtomicNumber<=60){
+				Checkstability(1.6f);
+			}else if (AtomicNumber>60 && AtomicNumber<82){
+				Checkstability(1.8f);
+			}else if (AtomicNumber>82){
+				Checkstability(2.0f);
 			}
-		}else if (Z.AtomicNo <= 40){
-			if((M.NeutronNo / Z.AtomicNo) >= 1.4f){
-				if((M.NeutronNo / Z.AtomicNo) >= 1.4f  && (M.NeutronNo / Z.AtomicNo) <= 1.45f){
-					unstable = true; stable = false; closetounstable = false;
-				}else{
-					KO.GetComponent<GameOver>().enabled = true;
-					KO.GetComponent<GameOver>().gameOver = true;
-				}			
-				
-			}else if ((M.NeutronNo / Z.AtomicNo) <= 1.4f && (M.NeutronNo / Z.AtomicNo) >= 1.00f){
-				if((M.NeutronNo / Z.AtomicNo) < 1.4f){
-					unstable = false; stable = false; closetounstable = true;
-				}else if ((M.NeutronNo / Z.AtomicNo) == 1.00f){
-					stable = true; unstable = false; closetounstable = false;
-				}
-			}
+		
+	}
+
+	void Checkstability(float Ratio){
+
+		if(AtomicNumber == 1 && NeutronNumber == 0 && !dead){
+			stable = true; unstable = false; closetounstable = false; dead = false;
+		}else if((NeutronNumber/AtomicNumber)>0 && (NeutronNumber/AtomicNumber)<=(Ratio-.5f) && !dead){
+			stable = true; unstable = false; closetounstable = false; dead =false;
+		}else if ((NeutronNumber/AtomicNumber)>(Ratio -.75f) && (NeutronNumber/AtomicNumber)<= (Ratio) && !dead){
+			stable = false; unstable = false; closetounstable = true; dead = false;
+		}else if ((NeutronNumber/AtomicNumber)> (Ratio) && (NeutronNumber/AtomicNumber)<= (Ratio+.75f) && !dead){
+			stable = false; unstable = true; closetounstable = false; dead = false;
+		}else {
+			stable = false; unstable = false; closetounstable = false; dead = true;
 		}
 
+		if(player.activeInHierarchy == false){
+			stable = false; unstable = false; closetounstable = false; dead = true;
+		}
 
-		
-		
+		if(dead == true){
+			stabilityState.text = "";
+			KO.enabled = true;
+			KO.gameOver = true;
+		}else if(stable == true){
+			stabilityState.text= "Stable";
+			stabilityState.color = Color.green;
+		}else if (closetounstable == true){
+			stabilityState.text = "Close to Unstable";
+			stabilityState.color = Color.magenta;
+		}else if (unstable == true){
+			stabilityState.text= "Unstable";
+			stabilityState.color = Color.red;
+		}
+
+		DisplayStats(Ratio);
+	}
+
+	void DisplayStats(float Ratio){
+		float a = (float) NeutronNumber; float b = (float)AtomicNumber;
+		float division =a/b;
+		protonStats.text = "Proton: " + AtomicNumber;
+		neutronStats.text = "Neutron: " + NeutronNumber;
+		electronStats.text = "Electron: " + ElectronNumber;
+		showRatio.text = "Neutron Proton ratio: " + division;
+		maxRatio.text = "Max stable ratio: " + Ratio;
 	}
 }

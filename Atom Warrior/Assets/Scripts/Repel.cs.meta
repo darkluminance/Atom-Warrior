@@ -3,7 +3,14 @@ guid: 4208b74c3a232fd46b00c7c0fe89c5d2
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - neutron: {instanceID: 0}
+  - protonExplosion: {fileID: 1014417190006810, guid: f45f53f19accee045a14053600aab440,
+      type: 2}
+  - neutronExplosion: {fileID: 1753833798414734, guid: cc156d5976e0d8740a96db9f3153126b,
+      type: 2}
+  - electronExplosion: {fileID: 1734601691746544, guid: dc5c47a86f3ff7f42990bba2775425b0,
+      type: 2}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 

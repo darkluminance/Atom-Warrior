@@ -327,7 +327,7 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 12800000, guid: e5a96b68b5071f54695247a57e66ffae, type: 3}
-    m_FontSize: 75
+    m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
     m_MinSize: 1
@@ -338,10 +338,13 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1.5
-  m_Text: Use the W, A, S, D or arrow keys to move the atom. Click any area to shoot
+  m_Text: "Use the W, A, S, D or arrow keys to move the atom. Click any area to shoot
     particles towards that direction. Left click to shoot electron, right click for
     proton, and middle mouse or space bar for neutron. remember, maintaining stability
-    of the atom while growing is your main goal
+    of the atom while growing is your main goal.\nConditions for stability:\n\tProton
+    Number can't be greater than neutron number.\n\tNeutron number must be less than
+    or equal to the max ratio.\n\tAtomic charge can't exceed 7.\n\tProton, neutron
+    or electron cannot reach zero."
 --- !u!222 &163885638
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -462,7 +465,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7830189, g: 0.7830189, b: 0.7830189, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
@@ -592,10 +595,10 @@ RectTransform:
   m_Father: {fileID: 1595586371}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 1920, y: 1080}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &870150756
 MonoBehaviour:
@@ -609,7 +612,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.8584906, g: 0.8584906, b: 0.8584906, a: 1}
   m_RaycastTarget: 1
   m_OnCullStateChanged:
     m_PersistentCalls:
