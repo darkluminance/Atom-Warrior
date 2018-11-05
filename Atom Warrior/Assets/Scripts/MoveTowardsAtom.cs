@@ -17,6 +17,8 @@ public class MoveTowardsAtom : MonoBehaviour {
 
 	int touchcountInt =0;
 
+	public GameObject[] elementSound;
+
 	// Use this for initialization
 	void Start () {
 		 atomPos = GameObject.FindWithTag("Player");
@@ -24,6 +26,8 @@ public class MoveTowardsAtom : MonoBehaviour {
 		 M = GameObject.FindWithTag("M").GetComponent<MassNumber>();
 		 E = GameObject.FindWithTag("E").GetComponent<Charge>();
 		 KO = GameObject.FindWithTag("Finish").GetComponent<GameOver>();
+		 
+		//Instantiate(elementSound[1], transform.position, Quaternion.identity);
 		 
 	}
 	
@@ -46,7 +50,8 @@ public class MoveTowardsAtom : MonoBehaviour {
 			
 		if(gameObject.tag == "Proton"){
 			//Add atomic no by one
-			if(touchcountInt==1){Z.AtomicNo++;}			
+			if(touchcountInt==1){Z.AtomicNo++;}		
+			Instantiate(elementSound[Z.AtomicNo], transform.position, Quaternion.identity);	
 		}
 
 		if(gameObject.tag == "Neutron"){

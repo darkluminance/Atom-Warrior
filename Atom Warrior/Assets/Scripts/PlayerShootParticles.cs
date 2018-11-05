@@ -15,6 +15,8 @@ public class PlayerShootParticles : MonoBehaviour {
 
 	public GameOver KO;
 
+	public GameObject[] elementSound;
+
 	// Use this for initialization
 	void Start () {
 		
@@ -70,6 +72,9 @@ public class PlayerShootParticles : MonoBehaviour {
 			bullet.GetComponent<MoveTowardsAtom>().enabled = false;	
 
 			Z.AtomicNo--;
+
+			
+			
 			
 			bullet.GetComponent<Rigidbody>().velocity=(touchPos - 
 			new Vector3 (transform.position.x, transform.position.y, 0)).normalized*shotSpeed;
@@ -78,7 +83,7 @@ public class PlayerShootParticles : MonoBehaviour {
 			KO.GetComponent<GameOver>().enabled = true;
 			KO.GetComponent<GameOver>().gameOver = true;
 		}
-
+			playSound();
 			StartCoroutine(Destroyafteramoment(bullet));
 							
 			
@@ -105,7 +110,12 @@ public class PlayerShootParticles : MonoBehaviour {
 	}
 
 	IEnumerator Destroyafteramoment(GameObject bullet){
+		
 		yield return new WaitForSeconds(2);
 		Destroy(bullet);
+	}
+
+	void playSound(){
+		Instantiate(elementSound[Z.AtomicNo], transform.position, Quaternion.identity);
 	}
 }
