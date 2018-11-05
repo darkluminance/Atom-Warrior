@@ -43,15 +43,15 @@ public class Stabilitycheck : MonoBehaviour {
 			if(AtomicNumber > 0 && AtomicNumber<=20){
 				Checkstability(1.25f);
 			}else if (AtomicNumber>20 && AtomicNumber<=40){
-				Checkstability(1.4f);
+				Checkstability(1.3f);
 			}else if (AtomicNumber>40 && AtomicNumber<=50){
-				Checkstability(1.5f);
+				Checkstability(1.35f);
 			}else if (AtomicNumber>50 && AtomicNumber<=60){
-				Checkstability(1.6f);
+				Checkstability(1.38f);
 			}else if (AtomicNumber>60 && AtomicNumber<82){
-				Checkstability(1.8f);
+				Checkstability(1.4f);
 			}else if (AtomicNumber>82){
-				Checkstability(2.0f);
+				Checkstability(1.45f);
 			}
 		
 	}
@@ -65,7 +65,8 @@ public class Stabilitycheck : MonoBehaviour {
 
 		float x = (float)NeutronNumber; float y = (float)AtomicNumber;
 
-		float divisn = x/y;		float dedRatio = 2.05f;
+		float divisn = x/y;		float dedRatio = Ratio+0.5f;
+		if(AtomicNumber == 1){dedRatio = 2.05f;}
 		if(!dead){
 			if( y == 1 && x == 0){
 				stable = true;	unstable= false;	dead = false;

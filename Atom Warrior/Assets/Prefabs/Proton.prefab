@@ -168,7 +168,7 @@ MonoBehaviour:
   KO: {fileID: 0}
   E: {fileID: 0}
   M: {fileID: 0}
-  moveSpeed: 4
+  moveSpeed: 5.5
   elementSound:
   - {fileID: 0}
   - {fileID: 1203303349758720, guid: 0ae69b044a98b574db5bafff782663e9, type: 2}
