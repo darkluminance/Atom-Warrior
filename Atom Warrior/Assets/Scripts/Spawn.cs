@@ -22,7 +22,7 @@ public class Spawn : MonoBehaviour {
 
 		while(true){
 		Vector2 pos =new Vector2 (player.position.x, player.position.y);
-		pos += Random.insideUnitCircle * 20f;
+		pos += Random.insideUnitCircle * 25f;
 
 		int i = Random.Range(0, particles.Length);
 
