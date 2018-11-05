@@ -44,10 +44,8 @@ public class Repel : MonoBehaviour {
 			int i = Random.Range (1,3);
 
 			if(i == 1){
-				//Disintegrate proton and beta decay
-				
-				Instantiate(protonExplosion, transform.position, Quaternion.identity);				
-				Instantiate(electronExplosion, transform.position, Quaternion.identity);
+				//Disintegrate proton and beta decay				
+				Instantiate(protonExplosion, transform.position, Quaternion.identity);
 				Destroy(other.gameObject);
 			}else if(i == 2){
 				//Bounce of

@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class GameOver : MonoBehaviour {
 
-	public GameObject atom, spawner, explosionPrefab;
+	public GameObject atom, spawner, explosionPrefab, sound, explode;
 
 	public Text Z, element, gameOverYOOOO, M, charge, restartText;
 
@@ -31,6 +31,7 @@ public class GameOver : MonoBehaviour {
 
 	public IEnumerator GameOverFunc(){
 			Instantiate(explosionPrefab, atom.transform.position, Quaternion.identity);
+			sound.SetActive(false);		Instantiate(explode, Vector2.zero, Quaternion.identity);
 			
 			element.text = "";
 			Z.text =""; M.text = ""; charge.text = "";

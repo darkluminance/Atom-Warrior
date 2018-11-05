@@ -58,6 +58,11 @@ public class Stabilitycheck : MonoBehaviour {
 
 	void Checkstability(float Ratio){
 
+		if(player.activeInHierarchy == false){
+			stable = false; unstable = false;	dead = true;
+			stabilityState.text = "";
+		}
+
 		float x = (float)NeutronNumber; float y = (float)AtomicNumber;
 
 		float divisn = x/y;		float dedRatio = 2.05f;
@@ -65,13 +70,17 @@ public class Stabilitycheck : MonoBehaviour {
 			if( y == 1 && x == 0){
 				stable = true;	unstable= false;	dead = false;
 			}else if(divisn<1){
-				stable = false;	unstable= false;	dead = true;}
+				stable = false;	unstable= false;	dead = true;
+				stabilityState.text = "";
+				KO.enabled = true;
+				KO.gameOver = true;}
 			 else if( divisn>=1  && divisn<=Ratio){
 				stable = true;	unstable= false;	dead = false;
 			}else if (divisn>Ratio && divisn<=dedRatio){
 				stable = false;	unstable= true;	dead = false;
 			}else {
 				stable = false;	unstable= false;	dead = true;
+				stabilityState.text = "";
 				KO.enabled = true;
 				KO.gameOver = true;
 			}
@@ -81,6 +90,7 @@ public class Stabilitycheck : MonoBehaviour {
 		
 		if(player.activeInHierarchy == false){
 			stable = false; unstable = false;	dead = true;
+			stabilityState.text = "";
 		}
 
 		if(dead == true){

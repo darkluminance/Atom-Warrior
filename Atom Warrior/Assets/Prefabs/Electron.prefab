@@ -161,7 +161,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4208b74c3a232fd46b00c7c0fe89c5d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  repelForce: 1
+  repelForce: 0.5
   neutron: {fileID: 1039716961137776, guid: 1801e537c2a6a9040a4ee4081435fb46, type: 2}
   protonExplosion: {fileID: 1014417190006810, guid: f45f53f19accee045a14053600aab440,
     type: 2}
