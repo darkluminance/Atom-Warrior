@@ -11,6 +11,7 @@ public class GameOver : MonoBehaviour {
 	public Text Z, element, gameOverYOOOO, M, charge, restartText;
 
 	public bool gameOver = false;
+	bool allowRestart = false;
 
 	// Use this for initialization
 	void Start () {
@@ -19,7 +20,7 @@ public class GameOver : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if(gameOver){
+		if(allowRestart){
 			if(Input.GetKeyDown(KeyCode.R)){
 				restartgame();
 			}else if (Input.GetKeyDown(KeyCode.C)){
@@ -43,6 +44,7 @@ public class GameOver : MonoBehaviour {
 			gameOverYOOOO.text = "GAME OVER";
 
 			restartText.text = "Press R to restart, C to Close";
+			allowRestart = true;
 
 			
 

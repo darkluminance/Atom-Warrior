@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class MainMenu : MonoBehaviour {
-	public GameObject helpscreen;
+	public GameObject helpscreen, loading;
 
 	public Text bestelem;
 
@@ -47,6 +47,7 @@ public class MainMenu : MonoBehaviour {
 			}
 		if(Input.GetKeyDown(KeyCode.P)){
 			if(helpscreen.activeInHierarchy == false){
+				loading.SetActive(true);
 				SceneManager.LoadScene("SampleScene", LoadSceneMode.Single);
 			}
 		}
